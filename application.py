@@ -1,5 +1,5 @@
 #!flask/bin/python
-from churn import app as application
+from churn import application
 
 if __name__ == '__main__':
     application.run()

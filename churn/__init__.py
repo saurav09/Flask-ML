@@ -1,11 +1,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
-# app.config.from_object(os.environ['APP_SETTINGS'])
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# app.secret_key = 'my-secrest-key'
-app.config.from_pyfile('config.py')
-db = SQLAlchemy(app)
+application = Flask(__name__)
+# application.config.from_object(os.environ['APP_SETTINGS'])
+application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# application.secret_key = 'my-secrest-key'
+application.config.from_pyfile('config.py')
+db = SQLAlchemy(application)
 
 from churn import views, models
