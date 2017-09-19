@@ -6,6 +6,6 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.secret_key = 'my-secrest-key'
 app.config.from_pyfile('config.py')
-db = SQLAlchemy()
+db = SQLAlchemy(app)
 
 from churn import views, models
