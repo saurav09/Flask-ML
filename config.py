@@ -1,4 +1,4 @@
-import os
+import os, sys
 
 class Config(object):
     DEBUG = False
@@ -6,6 +6,7 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+    print(SQLALCHEMY_DATABASE_URI, file=sys.stderr)
 
 
 class ProductionConfig(Config):
