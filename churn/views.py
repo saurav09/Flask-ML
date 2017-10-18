@@ -3,7 +3,6 @@ import os
 import sys
 
 import joblib as joblib
-import pandas as pd
 from flask import render_template, request, jsonify
 from churn import application, db, churn_form
 from churn.models import churn_data_from_user
@@ -51,29 +50,30 @@ def churn_form_data():
         db.session.rollback()
         db.session.flush()
 
-    db_data = churn_data_from_user()
+    # db_data = churn_data_from_user()
+    #
+    # user = db_data.query.order_by('-id').first()
+    # print(user, file=sys.stdout)
+    # user = user.__dict__
+    # user.pop('_sa_instance_state', None)
+    # user.pop('id', None)
+    # print(user, file=sys.stdout)
+    #
+    # form = churn_form.ChurnForm()
+    # # print(request.form, file=sys.stderr)
+    # if form.validate_on_submit():
+    #     prediction = churn_prediction(user)
+    #     return jsonify({'prediction': int(prediction)})
+    # return jsonify(data=form.errors)
+    return "hello"
 
-    user = db_data.query.order_by('-id').first()
-    print(user, file=sys.stdout)
-    user = user.__dict__
-    user.pop('_sa_instance_state', None)
-    user.pop('id', None)
-    print(user, file=sys.stdout)
 
-    form = churn_form.ChurnForm()
-    # print(request.form, file=sys.stderr)
-    if form.validate_on_submit():
-        prediction = churn_prediction(user)
-        return jsonify({'prediction': int(prediction)})
-    return jsonify(data=form.errors)
-
-
-def churn_prediction(data):
-    if model:
-        test = pd.DataFrame([data])
-        prediction = model.predict(test)[0]
-        print(prediction, file=sys.stderr)
-        return prediction
-    else:
-        return "model not found"
+# def churn_prediction(data):
+#     if model:
+#         test = pd.DataFrame([data])
+#         prediction = model.predict(test)[0]
+#         print(prediction, file=sys.stderr)
+#         return prediction
+#     else:
+#         return "model not found"
         # data.pop('csrf_token', None)# postgresql://mlappdbaws:mlappdbaws@mlappdbaws.cwgdwgddyo6e.ap-south-1.rds.amazonaws.com:5432/mlAppDbAws
